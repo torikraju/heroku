@@ -29,7 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 			.and()
 			.authorizeRequests()
 			.antMatchers("/").permitAll()
-			.antMatchers("/bootstrap/**","/pic/**","/webjars/**").permitAll()
+			.antMatchers("/profile","/profile/**","/changePassword","/changePhoto","/updateProfile").authenticated()
+			.antMatchers("/bootstrap/**","/pic/**","/webjars/**","/getProfilePic/**").permitAll()
 			.antMatchers("/login","/registration").not().authenticated()
 			.anyRequest().denyAll()
 			.and().rememberMe();

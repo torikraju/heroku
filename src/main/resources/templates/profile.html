@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Profile</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-5  toppad  pull-right">
+					<div th:if="${#authentication.name}==${user.userName}">
+						<a th:href="@{/updateProfile}">Edit Profile</a> || <a
+							th:href="@{/changePhoto}">Change Photo</a>
+					</div>
+					<p class=" text-info"
+						th:text="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm a')}">May
+						05,2014,03:00 pm</p>
+				</div>
+				<div class="col-sm-9 ">
+					<div class="panel panel-info">
+						<div class="panel-heading">
+							<h3 class="panel-title">Profile</h3>
+						</div>
+						<hr />
+						<div th:if="${user.profile}==null">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="error-template">
+											<h1>Oops!</h1>
+											<div class="error-details">
+												Please complete your <a th:href="@{/updateProfile}">Profile</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel-body" th:unless="${user.profile}==null">
+							<div class="row" >
+								<div class="col-md-3 col-lg-3 " align="center">
+									<img th:src="@{/getProfilePic/}+${user.userId}" class="img-circle img-responsive" />
+								</div>
+
+								<div class=" col-md-9 col-lg-9 ">
+									<table class="table table-user-information">
+										<tbody>
+											<tr>
+												<td>Name</td>
+												<td><span th:text="${user.profile.firstName}"></span> <span
+													th:text="${user.profile.lastName}"></span></td>
+											</tr>
+											<tr th:if="${#authentication.name}==${user.userName}">
+												<td>Username</td>
+												<td><span th:text="${user.userName}"></span></td>
+											</tr>
+											<tr>
+												<td>Gender</td>
+												<td><span th:text="${user.profile.gender}"></span></td>
+											</tr>
+											<tr>
+												<td>Address</td>
+												<td><span th:text="${user.profile.address}"></span></td>
+											</tr>
+											<tr>
+												<td>Email</td>
+												<td><span th:text="${user.email}"></span></td>
+											</tr>
+											<tr>
+												<td>Phone Number</td>
+												<td><span th:text="${user.profile.contactNumber}"></span></td>
+											</tr>
+										</tbody>
+									</table>
+									<div>
+										<div class="alert alert-success" th:if="${message}"
+											th:text="${message}"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

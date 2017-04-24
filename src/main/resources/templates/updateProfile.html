@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Update Profile</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Update Profile</h4>
+				<hr/>
+				
+				<form class="form-horizontal" th:action="@{/updateProfile}" method="post" th:object="${profile}">
+					<fieldset>
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label">First Name</label>
+							<div class="col-md-5">
+								<input  type="text"  class="form-control input-md" th:field="${profile.firstName}" />
+								<p class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label">Last Name</label>
+							<div class="col-md-5">
+								<input type="text" class="form-control input-md" th:field="${profile.lastName}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>								
+							</div>
+						</div>
+
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="col-md-4 control-label">Mobile Number</label>
+							<div class="col-md-5">
+								<input type="text" class="form-control input-md" th:field="${profile.contactNumber}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('contactNumber')}" th:errors="*{contactNumber}"></p>								
+								
+							</div>
+						</div>
+
+						<!-- Multiple Radios (inline) -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="radios">Gender</label>
+							<div class="col-md-4">
+								<label class="radio-inline" for="radios-0"> 
+								<input type="radio" name="radios" value="male" th:field="${profile.gender}" /> Male</label> 
+								<label class="radio-inline" for="radios-1"> 
+								<input type="radio" name="radios" value="female" th:field="${profile.gender}" />Female</label>
+								<p class="text-danger" th:if="${#fields.hasErrors('gender')}" th:errors="*{gender}"></p>
+							</div>
+						</div>
+
+						<!-- Textarea -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="">Address</label>
+							<div class="col-md-4">
+								<textarea class="form-control" th:field="${profile.address}"></textarea>
+								<p class="text-danger" th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></p>
+							</div>
+						</div>
+
+						<!-- Button -->
+						<div class="form-group">
+							<label class="col-md-4 control-label" for="singlebutton"></label>
+							<div class="col-md-4">
+								<button type="submit"  class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

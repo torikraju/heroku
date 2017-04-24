@@ -34,7 +34,7 @@ public class RegistrationController {
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String showPage(Model model) {
 		model.addAttribute("user", new User());
-		return "/registration";
+		return "registration";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)

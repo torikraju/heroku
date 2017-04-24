@@ -1,0 +1,175 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+	<changeSet author="torikraju (generated)" id="1492908809736-1">
+
+		<createTable tableName="contact_us">
+			<column name="id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="date" type="BYTEA" />
+			<column name="email" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="message" type="TEXT">
+				<constraints nullable="false" />
+			</column>
+			<column name="name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="read" type="BOOLEAN">
+				<constraints nullable="false" />
+			</column>
+			<column name="subject" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-2">
+		<createTable tableName="notice">
+			<column name="id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="date" type="BYTEA" />
+			<column name="message" type="TEXT">
+				<constraints nullable="false" />
+			</column>
+			<column name="title" type="VARCHAR(75)">
+				<constraints nullable="false" />
+			</column>
+			<column name="userid" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-3">
+		<createTable tableName="profile">
+			<column name="user_id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="address" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="contact_number" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="first_name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="gender" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="last_name" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="photo" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-4">
+		<createTable tableName="user_roles">
+			<column name="user_role_id" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="role" type="VARCHAR(255)" />
+			<column name="userid" type="VARCHAR(255)" />
+		</createTable>
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-5">
+		<createTable tableName="users">
+			<column name="userid" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="email" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+			<column name="enabled" type="BOOLEAN" />
+			<column name="password" type="VARCHAR(100)" />
+			<column name="username" type="VARCHAR(255)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-6">
+		<addPrimaryKey columnNames="id" constraintName="contact_us_pkey"
+			tableName="contact_us" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-7">
+		<addPrimaryKey columnNames="id" constraintName="notice_pkey"
+			tableName="notice" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-8">
+		<addPrimaryKey columnNames="user_id" constraintName="profile_pkey"
+			tableName="profile" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-9">
+		<addPrimaryKey columnNames="user_role_id"
+			constraintName="user_roles_pkey" tableName="user_roles" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-10">
+		<addPrimaryKey columnNames="userid" constraintName="users_pkey"
+			tableName="users" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-11">
+		<addUniqueConstraint columnNames="email"
+			constraintName="uk_6dotkott2kjsp8vw4d0m25fb7" tableName="users" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-12">
+		<addUniqueConstraint columnNames="username"
+			constraintName="uk_r43af9ap4edm43mmtq01oddj6" tableName="users" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-13">
+		<addForeignKeyConstraint baseColumnNames="userid"
+			baseTableName="notice" constraintName="fk4fub0vor19ask0laxnfh7fick"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="userid"
+			referencedTableName="users" />
+	</changeSet>
+
+	<changeSet author="torikraju (generated)" id="1492908809736-14">
+		<addForeignKeyConstraint baseColumnNames="userid"
+			baseTableName="user_roles" constraintName="fk6qgn9xtttlujey5sa2j7qow4d"
+			deferrable="false" initiallyDeferred="false" onDelete="NO ACTION"
+			onUpdate="NO ACTION" referencedColumnNames="userid"
+			referencedTableName="users" />
+	</changeSet>
+
+
+	<changeSet author="torikraju (generated)" id="1492908809736-15">
+		<insert tableName="users">
+			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
+			<column name="email" value="torikraju@hotmail.com" />
+			<column name="enabled" value="true" />
+			<column name="password" value="$2a$10$DLbBPLCdVAC9OR/iCJGjfORE/yZXHBAbzlDbdtqOi6Vq6DBhtsaYK" />
+			<column name="username" value="torikraju" />
+		</insert>
+		<insert tableName="user_roles">
+			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d2" />
+			<column name="role" value="ROLE_USER" />
+			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
+		</insert>
+		<insert tableName="user_roles">
+			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d3" />
+			<column name="role" value="ROLE_ADMIN" />
+			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
+		</insert>
+		<insert tableName="user_roles">
+			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d4" />
+			<column name="role" value="ROLE_SYSTEMADMIN" />
+			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
+		</insert>
+
+	</changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Individual Notice</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>
+					<a>Individual Notice</a>
+				</h4>
+				<hr/>
+				Title:
+				<p th:text="${notice.title}"></p>
+				Posted Date:
+				<p th:text="${notice.date}"></p>
+				Notice:
+				<p th:utext="${notice.message}"></p>
+			</div>
+			<div class="ratings">
+				<p>Posted by: <a th:href="@{/profile/}+${notice.user.userId}" th:text="${notice.user.profile.firstName}+' '+${notice.user.profile.lastName}">Name</a></p>
+			</div>
+		</div>
+
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Post Notice</title>
+
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+<div th:if="${user.profile}==null">
+	<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="error-template">
+                <h1>Oops!</h1>
+                <div class="error-details">
+                	Please complete your <a th:href="@{/updateProfile}">Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+		<div class="thumbnail" th:if="${user.profile}!=null">
+			<div class="caption-full">
+				<h4>Post Notice</h4>
+				<hr/>
+				<div>
+					<div class="alert alert-success" th:if="${status}==true">Notice
+						Saved.</div>
+				</div>
+				<form th:action="@{/postNotice}" method="post" th:object="${notice}"
+					class="form-horizontal">
+					<input type="hidden" th:field="${notice.id}"/>
+					<input type="hidden" th:field="${notice.date}"/>
+					
+					<fieldset>
+						<div class="form-group">
+							<div class="col-md-5">
+								<input  type="text"  class="form-control input-md" placeholder="Notice title" th:field="${notice.title}"/>
+								<p class="text-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+							</div>
+						</div>
+						<div class="form-group">
+						<label class="col-md-4">Notice</label>
+							<div class="col-md-12">
+							
+								<textarea  th:field="${notice.message}" style="margin: 0px; width: 100%; height: 255px;"></textarea>
+								<p class="text-danger" th:if="${#fields.hasErrors('message')}"
+									th:errors="*{message}"></p>
+							</div>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+
+
+</body>
+
+</html>

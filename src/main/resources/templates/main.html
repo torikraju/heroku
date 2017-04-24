@@ -21,11 +21,11 @@
 <!-- Bootstrap Core CSS -->
 <link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 
+<!-- datatab;e -->
+<link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
 <!-- Custom CSS -->
 <link th:href="@{/bootstrap/css/custom.css}" rel="stylesheet" />
 
-<!-- Custom CSS -->
-<link th:href="@{/bootstrap/css/custom.css}" rel="stylesheet" />
 
 
 </head>
@@ -127,13 +127,29 @@
 	</div>
 	<!-- jQuery -->
 	<script th:src="@{/bootstrap/jquery/jquery.js}"></script>
+	<!-- data table serial is important -->
+	<script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap.min.js"></script>
+
+ 	<script>
+		$(document).ready(function() {
+    		$('#yourNotice').DataTable();
+    		$('#allNotice').DataTable();
+		});
+ 	 </script>
+	
+	
 	<!-- jQuery ui -->
 	<script th:src="@{/bootstrap/jquery/jquery-ui.min.js}"></script>
 	
-	<!-- Bootstrap Core JavaScript -->
+		<!-- Bootstrap Core JavaScript -->
 	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	
 	<!-- custom js -->
 	<script th:src="@{/bootstrap/js/custom.js}"></script>
+	
+
+
 	
 
 </body>

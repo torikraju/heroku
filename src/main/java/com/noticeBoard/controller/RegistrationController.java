@@ -12,7 +12,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.noticeBoard.repository.UserRepository;
@@ -33,30 +32,36 @@ public class RegistrationController {
 
 	@RequestMapping(value = "/registration", method = RequestMethod.GET)
 	public String showPage(Model model) {
-		model.addAttribute("user", new User());
+
+		if (!model.containsAttribute("user")) {
+			System.out.println(model.toString());
+			model.addAttribute("user", new User());
+		}
+
 		return "registration";
 	}
 
 	@RequestMapping(value = "/registration", method = RequestMethod.POST)
-	public String registrationAction(@Valid User user, BindingResult result, @RequestParam("c_passwd") String c_passwd,
-			Model model, RedirectAttributes redirectAttributes) {
+	public String registrationAction(@Valid User user, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
-			return "/registration";
-		}
-
-		if (!c_passwd.equals(user.getPassword())) {
-			model.addAttribute("errMes", "Password didn't match.");
-			return "/registration";
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
+			redirectAttributes.addFlashAttribute("user", user);
+			return "redirect:/registration";
 		}
 
 		if ((userRepository.findByUserName(user.getUserName())) != null) {
 			result.rejectValue("userName", "duplicate.userName");
-			return "/registration";
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
+			redirectAttributes.addFlashAttribute("user", user);
+			return "redirect:/registration";
 		}
 		if (userRepository.findByEmail(user.getEmail()) != null) {
 			result.rejectValue("email", "duplicate.email");
-			return "/registration";
+			redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.user", result);
+			redirectAttributes.addFlashAttribute("user", user);
+			return "redirect:/registration";
 		}
 
 		user.setEnabled(true);

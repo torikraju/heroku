@@ -160,7 +160,7 @@ public class ProfileController {
 	// showing changePhot page
 	@RequestMapping(value = "/changePhoto", method = RequestMethod.GET)
 	public String showChangePhotoPage() {
-		return "/changePhoto";
+		return "changePhoto";
 	}
 
 	// file upload Action

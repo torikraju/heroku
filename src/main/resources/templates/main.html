@@ -1,0 +1,140 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+
+<head>
+<title>main.html</title>
+
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>default title</title>
+
+<!-- Bootstrap Core CSS -->
+<link th:href="@{/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link th:href="@{/bootstrap/css/custom.css}" rel="stylesheet" />
+
+<!-- Custom CSS -->
+<link th:href="@{/bootstrap/css/custom.css}" rel="stylesheet" />
+
+
+</head>
+<body>
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span> 
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" th:href="@{/}">Notice Board</a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li><a sec:authorize="isAuthenticated()" th:href="@{/profile}">Profile</a></li>
+					<li class="dropdown" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_SYSTEMADMIN')">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Administrator control <span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/userManage}">User Manage</a></li>
+							<li><a th:href="@{/noticeManage}">Notice Manage</a></li>
+							<li sec:authorize="hasRole('ROLE_SYSTEMADMIN')"><a th:href="@{/adminManage}">Admin Manage</a></li>
+							<li sec:authorize="hasRole('ROLE_SYSTEMADMIN')"><a th:href="@{/createAdmin}">Create new admin</a></li>
+							<li><a th:href="@{/mail}">Mail <span class="badge" th:text="${newMailCount}"></span></a></li>
+						</ul>
+					</li>
+					<li><a th:href="@{/contactUs}">Contact</a></li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+					<li class="dropdown" sec:authorize="isAuthenticated()">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+							Hi! <span sec:authentication="name">Bob</span> 
+							<span class="caret"></span>
+						</a>
+						<ul class="dropdown-menu">
+							<li><a th:href="@{/profile}">Profile</a></li>
+							<li><a th:href="@{/changePassword}">Setting</a></li>
+							<li role="separator" class="divider"></li>
+							<li>
+								<form th:action="@{/logout}" method="post">
+									<input type="submit" class="logoutButton" value="Logout" />
+								</form>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-md-3">
+				<div class="list-group">
+					<a th:href="@{/}" class="list-group-item ">Home</a> 
+					<a sec:authorize="isAuthenticated()" th:href="@{/profile}" class="list-group-item">Profile</a> 
+					<a th:href="@{/postNotice}" class="list-group-item">Post Notice</a> 
+					<a th:href="@{/allNotice}" class="list-group-item">Show all Notice</a> 
+					<a sec:authorize="isAuthenticated()" th:href="@{/yourNotice}" class="list-group-item">My Notice</a> 
+					<a sec:authorize="isAuthenticated()" th:href="@{/chat}" class="list-group-item">Chat</a>
+					<a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="list-group-item">Login</a>
+					<a sec:authorize="!isAuthenticated()" th:href="@{/registration}" class="list-group-item">Registration</a>
+				</div>
+			</div>
+			<div class="col-md-9">
+			
+				<div layout:fragment="content">
+					<!-- content goes here -->
+				</div>
+				
+			</div>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<hr />
+
+		<!-- Footer -->
+		<footer>
+			<div class="row">
+				<div class="col-lg-12">
+					<p>Copyright &copy; torikraju 2017</p>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+	<!-- jQuery -->
+	<script th:src="@{/bootstrap/jquery/jquery.js}"></script>
+	<!-- jQuery ui -->
+	<script th:src="@{/bootstrap/jquery/jquery-ui.min.js}"></script>
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script th:src="@{/bootstrap/js/bootstrap.min.js}"></script>
+	<!-- custom js -->
+	<script th:src="@{/bootstrap/js/custom.js}"></script>
+	
+
+</body>
+</html>

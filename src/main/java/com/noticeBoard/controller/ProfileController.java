@@ -120,7 +120,7 @@ public class ProfileController {
 	// change password Action
 	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
 	public String changePasswrodAciton(@RequestParam Map<String, String> requestParams, Principal principal,
-			Model model) {
+			Model model,RedirectAttributes redirectAttributes) {
 
 		String oldPassword = requestParams.get("oldPassword");
 		String newPasswrod = requestParams.get("newPassword");
@@ -129,30 +129,30 @@ public class ProfileController {
 		User user = userRepository.findByUserName(principal.getName());
 
 		if (oldPassword.isEmpty() || newPasswrod.isEmpty() || confirmPassword.isEmpty()) {
-			model.addAttribute("message", "Please fill all the fields.");
-			return "changePassword";
+			redirectAttributes.addFlashAttribute("message", "Please fill all the fields.");
+			return "redirect:/changePassword";
 		}
 		if (newPasswrod.length() < 6) {
-			model.addAttribute("message", "password is too weak. Password length must be 6-20");
-			return "changePassword";
+			redirectAttributes.addFlashAttribute("message", "password is too weak. Password length must be 6-20");
+			return "redirect:/changePassword";
 		}
 
 		if (!(bCryptPasswordEncoder.matches(oldPassword, user.getPassword()))) {
-			model.addAttribute("message", "Old passwrod didnt match..");
-			return "changePassword";
+			redirectAttributes.addFlashAttribute("message", "Old passwrod didnt match..");
+			return "redirect:/changePassword";
 		}
 
 		if (!newPasswrod.equals(confirmPassword)) {
-			model.addAttribute("message", "New passwrod didnt match..");
-			return "changePassword";
+			redirectAttributes.addFlashAttribute("message", "New passwrod didnt match..");
+			return "redirect:/changePassword";
 		}
 
 		user.setPassword(bCryptPasswordEncoder.encode(newPasswrod));
 		userRepository.save(user);
 
-		model.addAttribute("suecess", "Passwrod changed..");
+		redirectAttributes.addFlashAttribute("suecess", "Passwrod changed..");
 
-		return "changePassword";
+		return "redirect:/changePassword";
 	}
 
 	// ****************************Start of file Upload*********************

@@ -165,17 +165,17 @@ public class ProfileController {
 
 	// file upload Action
 	@RequestMapping(value = "/changePhoto", method = RequestMethod.POST)
-	public String fileUploadAction(MultipartFile file, Principal principal, Model model) throws IOException {
+	public String fileUploadAction(MultipartFile file, Principal principal, Model model,RedirectAttributes redirectAttributes) throws IOException {
 		User user = userRepository.findByUserName(principal.getName());
 
 		if (file.getSize() > 500000) {
-			model.addAttribute("message", "Maximum file size is 500KB");
-			return "/changePhoto";
+			redirectAttributes.addFlashAttribute("message", "Maximum file size is 500KB");
+			return "redirect:/changePhoto";
 		}
 
 		if (file.isEmpty() || !isImage(file)) {
-			model.addAttribute("message", "Incorrect file.Please upload a picture");
-			return "/changePhoto";
+			redirectAttributes.addFlashAttribute("message", "Incorrect file.Please upload a picture");
+			return "redirect:/changePhoto";
 		}
 
 		Resource pic = copyFiletoPictures(file);
@@ -189,9 +189,9 @@ public class ProfileController {
 
 		userRepository.save(user);
 
-		model.addAttribute("suecess", "File Uploaded...");
+		redirectAttributes.addFlashAttribute("suecess", "File Uploaded...");
 
-		return "/changePhoto";
+		return "redirect:/changePhoto";
 	}
 
 	private static String getFileExtension(String name) {
@@ -222,8 +222,6 @@ public class ProfileController {
 	// for deleting file
 	public void deleteFile(String filename) throws IOException {
 		String fileDetails = picturesDir.getFile() + "/" + filename;
-		System.out.println(fileDetails);
-
 		File file = new File(fileDetails);
 		file.delete();
 	}

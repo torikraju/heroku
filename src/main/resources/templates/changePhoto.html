@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Setting</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Change Photo</h4>
+				<hr />
+
+
+				<div class="row">
+					<div class="col-lg-12">
+						<div>
+							<div class="alert alert-danger" th:if="${message}!=null"
+								th:text="${message}"></div>
+						</div>
+
+						<div>
+							<div class="alert alert-success" th:if="${suecess}!=null"
+								th:text="${suecess}"></div>
+						</div>
+
+					</div>
+				</div>
+
+				<form th:action="@{/changePhoto}" method="post" enctype="multipart/form-data">
+						<span class="btn btn-success fileinput-button">
+							<input type="file" name="file"  />
+						</span>
+						<button type="submit" class="btn btn-primary start">
+							<i class="glyphicon glyphicon-upload"></i> <span>Upload</span>
+						</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+</body>
+
+</html>

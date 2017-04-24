@@ -23,11 +23,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http
 			.formLogin()
+			.loginPage("/login").defaultSuccessUrl("/")
 			.and()
 			.logout().logoutSuccessUrl("/")
 			.and()
 			.authorizeRequests()
-			.antMatchers("/").authenticated()
+			.antMatchers("/").permitAll()
+			.antMatchers("/bootstrap/**","/pic/**","/webjars/**").permitAll()
+			.antMatchers("/login","/registration").not().authenticated()
 			.anyRequest().denyAll()
 			.and().rememberMe();
 		

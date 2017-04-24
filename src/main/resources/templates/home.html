@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="/layout/main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Home</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Virtual Notice Board</h4>
+				<p>
+					This program is based on computerized notice system that stores information about the notices 
+					of the admin and users differently of an organization. To provide a notice user must create a 
+					valid account and only then they can generate notice and also can edit or update notice. After 
+					posting a notice the all users can view it through the form with data table and many more.
+				</p>
+				<p>
+					Here are the last five notice. If your want to see all notice then use menu.
+				</p>
+
+
+				<table class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Notice</th>
+							<th>Posted Date</th>
+							<th>Posted by</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="center" th:each="notices,iterationStatus : ${notices}">
+							<td th:text="${iterationStatus.count}"></td>
+							<td> 
+								<span th:utext="${#strings.abbreviate(notices.title,75)}"></span>
+								<a th:href="@{/individualNotice/}+${notices.id}">Read notice</a>
+							</td>
+							<td th:text="${notices.date}"></td>
+							<td class="center">
+								<a th:href="@{/profile/}+${notices.user.userId}" th:text="${notices.user.profile.firstName}+' '+${notices.user.profile.lastName}">Name</a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+</html>

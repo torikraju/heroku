@@ -59,5 +59,12 @@ public class UserRole {
 		this.userroleid = userroleid;
 	}
 
+	@Override
+	public String toString() {
+		return "UserRole [role=" + role + "]";
+	}
+	
+	
+
 
 }

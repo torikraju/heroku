@@ -16,7 +16,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.noticeBoard.customAnnotation.Username;
 import com.noticeBoard.customAnnotation.ValidEmail;
 import com.noticeBoard.model.Notice;
@@ -55,7 +54,6 @@ public class User implements Serializable {
 	private Set<UserRole> roles;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-	 @JsonManagedReference
 	private Set<Notice> notices;
 
 	@OneToOne(cascade = CascadeType.ALL, mappedBy = "user")
@@ -140,8 +138,11 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [userId=" + userId + ", userName=" + userName + ", email=" + email + "]";
+		return "User [userId=" + userId + ", userName=" + userName + ", email=" + email + ", enabled=" + enabled
+				+ ", roles=" + roles + ", profile=" + profile + "]";
 	}
+
+
 
 
 

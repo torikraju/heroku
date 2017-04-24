@@ -14,7 +14,6 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.noticeBoard.user.User;
 
 @Entity
@@ -30,7 +29,6 @@ public class Notice implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "userid")
-	@JsonBackReference
 	private User user;
 
 	@Size(min = 20)

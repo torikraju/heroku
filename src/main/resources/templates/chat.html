@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Chat</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>
+					<a href="#">Global Chat Service</a>
+				</h4>
+				<div class="row">
+					<div class="col-md-6">
+						<form class="form-inline" id="target1">
+							<div class="form-group">
+								<button id="connect" class="btn btn-default" type="submit">Connect</button>
+								<button id="disconnect" class="btn btn-default" type="submit" disabled="disabled">Disconnect</button>
+							</div>
+						</form>
+					</div>
+					<div class="col-md-6">
+						<form class="form-inline" id="target2">
+							<div class="form-group">
+								<input type="hidden" id="name" th:value="${#authentication.getPrincipal().getUsername()}" />
+								<input type="text" id="message" class="form-control" placeholder="Message" />
+							</div>
+							<button id="send" class="btn btn-default" type="submit">Send</button>
+						</form>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12">
+						<table id="conversation" class="table table-striped">
+							<thead>
+								<tr>
+									<th>Message</th>
+								</tr>
+							</thead>
+							<tbody id="messages">
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

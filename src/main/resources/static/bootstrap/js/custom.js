@@ -1,5 +1,4 @@
-$(document).ready(function() {
-
+;(function($){
 	// registration form validation
 	$("#registration").validate({
 		errorClass : 'text-danger',
@@ -11,8 +10,5 @@ $(document).ready(function() {
 		}
 	});
 	console.log(jQuery().jquery);
-	
-	
-
-});
+})(jQuery);
 

@@ -145,21 +145,4 @@
 			referencedTableName="users" />
 	</changeSet>
 
-
-	<changeSet author="torikraju (generated)" id="1492908809736-15">
-		<insert tableName="users">
-			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
-			<column name="email" value="torikraju@hotmail.com" />
-			<column name="enabled" value="true" />
-			<column name="password" value="$2a$10$DLbBPLCdVAC9OR/iCJGjfORE/yZXHBAbzlDbdtqOi6Vq6DBhtsaYK" />
-			<column name="username" value="torikraju" />
-		</insert>
-		<insert tableName="user_roles">
-			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d4" />
-			<column name="role" value="ROLE_SYSTEMADMIN" />
-			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
-		</insert>
-
-	</changeSet>
-
 </databaseChangeLog>

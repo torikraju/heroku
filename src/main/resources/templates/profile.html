@@ -39,7 +39,21 @@
 							<h3 class="panel-title">Profile</h3>
 						</div>
 						<hr />
-						<div th:if="${user.profile}==null">
+						<div th:if="${user.profile}==null and ${#authentication.name}!=${user.userName}">
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="error-template">
+											<div class="error-details">
+												This user have not complete his/her profile .
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div th:if="${user.profile}==null and ${#authentication.name}==${user.userName}">
 							<div class="container">
 								<div class="row">
 									<div class="col-md-12">

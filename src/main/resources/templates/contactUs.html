@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Contact</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Contact Us</h4>
+				<hr />
+				<div class="well well-sm">
+						<div>
+							<div class="alert alert-success" th:if="${message}" th:text="${message}"></div>
+						</div>
+					<form class="form-horizontal" th:action="@{/contactUs}" method="post" th:object="${contactUs}">
+						<fieldset>
+
+							<!-- Name input-->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="name">Name</label>
+								<div class="col-md-9">
+									<input type="text" placeholder="Your name" class="form-control" th:field="${contactUs.name}"  />
+									<p class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+								</div>
+							</div>
+
+							<!-- Email input-->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="email">E-mail</label>
+								<div class="col-md-9">
+									<input type="text" placeholder="Your email" class="form-control" th:field="${contactUs.email}" />
+									<p class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+								</div>
+							</div>
+							<!-- Subject input-->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="subject">Subject</label>
+								<div class="col-md-9">
+									<input type="text"  class="form-control" th:field="${contactUs.subject}"/>
+									<p class="text-danger" th:if="${#fields.hasErrors('subject')}" th:errors="*{subject}"></p>
+								</div>
+							</div>
+
+							<!-- Message body -->
+							<div class="form-group">
+								<label class="col-md-3 control-label" for="message">Message</label>
+								<div class="col-md-9">
+									<textarea class="form-control" th:field="${contactUs.message}" placeholder="Please enter your message here..." rows="5"></textarea>
+									<p class="text-danger" th:if="${#fields.hasErrors('message')}" th:errors="*{message}"></p>
+								</div>
+							</div>
+
+							<!-- Form actions -->
+							<div class="form-group">
+								<div class="col-md-12 text-right">
+									<button type="submit" class="btn btn-primary btn-lg">Submit</button>
+								</div>
+							</div>
+						</fieldset>
+					</form>
+				</div>
+
+			</div>
+
+
+
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+</html>

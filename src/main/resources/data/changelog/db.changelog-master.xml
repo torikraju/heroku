@@ -155,16 +155,6 @@
 			<column name="username" value="torikraju" />
 		</insert>
 		<insert tableName="user_roles">
-			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d2" />
-			<column name="role" value="ROLE_USER" />
-			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
-		</insert>
-		<insert tableName="user_roles">
-			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d3" />
-			<column name="role" value="ROLE_ADMIN" />
-			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />
-		</insert>
-		<insert tableName="user_roles">
 			<column name="user_role_id" value="09aafc85-39d3-40f3-a09d-246a48ee71d4" />
 			<column name="role" value="ROLE_SYSTEMADMIN" />
 			<column name="userid" value="e1707cf6-2aa4-4745-b04f-c9e03dc0a660" />

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>Mail</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Mail</h4>
+				<hr />
+
+				<table id="mail" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Email</th>
+							<th>Subject</th>
+							<th>Date</th>
+							<th>Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="center" th:each="mails,iterationStatus : ${mails}">
+							<td th:text="${iterationStatus.count}"></td>
+							<td th:text="${mails.name}"></td>
+							<td th:text="${mails.email}"></td>
+							<td th:text="${#strings.abbreviate(mails.subject,10)}"></td>
+							<td th:text="${mails.date}"></td>
+							<td><span
+								th:utext="${#strings.abbreviate(mails.message,25)}"></span> 
+								<a th:href="@{/individualMail/}+${mails.id}">Read</a>
+								<span class="label label-default" th:if="${mails.read}==false">New</span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+
+			</div>
+		</div>
+
+	</div>
+</body>
+
+</html>

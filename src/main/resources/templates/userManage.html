@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorator="main">
+
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+
+<title>User Manage</title>
+
+
+
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<!-- Page Content -->
+
+		<div class="thumbnail">
+			<div class="caption-full">
+				<h4>Manage User</h4>
+				<hr />
+
+				<table id="user" class="table table-striped table-bordered">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>Name</th>
+							<th>Username</th>
+							<th>Show Profile</th>
+							<th>Status</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="center" th:each="users,iterationStatus : ${users}">
+							<td th:text="${iterationStatus.count}"></td>
+							<td  th:text="${users.user.profile}==null? 'New User' :${users.user.profile.firstName}+' '+${users.user.profile.lastName}"></td>
+							<td th:text="${users.user.userName}"></td>
+							<td ><a th:href="@{/profile/}+${users.user.userId}">View Profile</a></td>
+							<td th:text="${users.user.enabled}==true ? Active : Inactive"></td>
+							<td class="center"><a th:href="@{/AdminAction/enabled/}+${users.user.userName}" th:text="${users.user.enabled}==true ? Block : Permit"></a></td>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+			</div>
+
+		</div>
+
+	</div>
+
+
+
+
+</body>
+
+</html>
